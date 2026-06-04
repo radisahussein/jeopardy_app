@@ -1,26 +1,178 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-chakra, ui-sans-serif, system-ui, sans-serif);
+  --font-mono: ui-monospace, monospace;
+  --font-russo: var(--font-russo);
+  --font-chakra: var(--font-chakra);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  /* Jeopardy dark theme — Midnight Blue + Sunshine Yellow palette */
+  --background: #191970;
+  --foreground: #FFFFFF;
+  --card: #0F1050;
+  --card-foreground: #FFFFFF;
+  --popover: #0F1050;
+  --popover-foreground: #FFFFFF;
+  --primary: #FFDB58;
+  --primary-foreground: #191970;
+  --secondary: #0A0A3E;
+  --secondary-foreground: #FFFFFF;
+  --muted: #0F1050;
+  --muted-foreground: #808080;
+  --accent: #FFDB58;
+  --accent-foreground: #191970;
+  --destructive: #E0115F;
+  --border: rgba(255,255,255,0.1);
+  --input: rgba(255,255,255,0.08);
+  --ring: #FFDB58;
+  --radius: 0.625rem;
+  --sidebar: #0F1050;
+  --sidebar-foreground: #FFFFFF;
+  --sidebar-primary: #FFDB58;
+  --sidebar-primary-foreground: #191970;
+  --sidebar-accent: #0A0A3E;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: rgba(255,255,255,0.1);
+  --sidebar-ring: #FFDB58;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-[#191970] text-white;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Font utilities */
+.font-russo { font-family: var(--font-russo), 'Impact', sans-serif; }
+.font-chakra { font-family: var(--font-chakra), 'Inter', sans-serif; }
+
+/* Jeopardy tile glow */
+.tile-glow {
+  box-shadow: 0 0 20px rgba(255,219,88,0.15), inset 0 1px 0 rgba(255,255,255,0.08);
+  transition: box-shadow 0.2s, transform 0.15s;
+}
+.tile-glow:hover {
+  box-shadow: 0 0 35px rgba(255,219,88,0.4), inset 0 1px 0 rgba(255,255,255,0.15);
+}
+
+/* Gold text glow */
+.gold-glow {
+  text-shadow: 0 0 20px rgba(255,219,88,0.6), 0 0 40px rgba(255,219,88,0.3);
+}
+
+/* Score pop animation */
+@keyframes score-pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+.score-pop { animation: score-pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+/* Double flash */
+@keyframes double-flash {
+  0%, 100% { background-color: #0A0A3E; }
+  50% { background-color: #FFDB58; }
+}
+.double-flash { animation: double-flash 0.5s ease-in-out 3; }
+
+/* Dark card styles */
+.j-card {
+  background: #0F1050;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+}
+
+/* Gold CTA button */
+.btn-gold {
+  background: #FFDB58;
+  color: #191970;
+  font-family: var(--font-russo), sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 0.15s;
+}
+.btn-gold:hover {
+  background: #FFE680;
+  box-shadow: 0 0 20px rgba(255,219,88,0.4);
+}
+
+/* Navy button */
+.btn-navy {
+  background: #0A0A3E;
+  color: white;
+  border: 1px solid rgba(255,255,255,0.15);
+  font-family: var(--font-chakra), sans-serif;
+  font-weight: 600;
+  transition: all 0.15s;
+}
+.btn-navy:hover {
+  background: #0F0F52;
+  border-color: rgba(255,219,88,0.3);
+}
+
+/* Dark input */
+.j-input {
+  background: rgba(255,255,255,0.06) !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  color: white !important;
+}
+.j-input:focus {
+  border-color: #FFDB58 !important;
+  box-shadow: 0 0 0 2px rgba(255,219,88,0.15) !important;
+}
+.j-input::placeholder { color: rgba(255,255,255,0.3) !important; }
+
+/* Scanline overlay for board (optional retro touch) */
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.08) 2px,
+    rgba(0,0,0,0.08) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
 }

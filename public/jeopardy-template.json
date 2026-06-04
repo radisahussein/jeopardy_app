@@ -1,0 +1,327 @@
+{
+  "rounds": [
+    {
+      "name": "Round 1",
+      "categories": [
+        {
+          "name": "Geography",
+          "questions": [
+            {
+              "text": "This is the capital city of France.",
+              "answer": "Paris",
+              "points": 100
+            },
+            {
+              "text": "This river is the longest in the world.",
+              "answer": "The Nile",
+              "points": 200
+            },
+            {
+              "text": "This is the smallest country in the world by area.",
+              "answer": "Vatican City",
+              "points": 300
+            },
+            {
+              "text": "This is the only continent that spans all four hemispheres.",
+              "answer": "Africa",
+              "points": 400
+            },
+            {
+              "text": "Despite being Australia's largest city, this is NOT the capital of Australia — which city actually is?",
+              "answer": "Canberra",
+              "points": 500,
+              "is_double": true,
+              "double_type": "wagerable"
+            }
+          ]
+        },
+        {
+          "name": "Science",
+          "questions": [
+            {
+              "text": "This planet is known as the Red Planet.",
+              "answer": "Mars",
+              "points": 100
+            },
+            {
+              "text": "The chemical symbol for water.",
+              "answer": "H₂O",
+              "points": 200
+            },
+            {
+              "text": "Plants absorb this gas from the atmosphere during photosynthesis.",
+              "answer": "Carbon dioxide (CO₂)",
+              "points": 300,
+              "is_double": true,
+              "double_type": "wagerable"
+            },
+            {
+              "text": "The number of bones in the adult human body.",
+              "answer": "206",
+              "points": 400
+            },
+            {
+              "text": "This is the only planet in our solar system not named after a Roman or Greek god.",
+              "answer": "Earth",
+              "points": 500
+            }
+          ]
+        },
+        {
+          "name": "History",
+          "questions": [
+            {
+              "text": "This person was the first President of the United States.",
+              "answer": "George Washington",
+              "points": 100
+            },
+            {
+              "text": "World War II ended in this year.",
+              "answer": "1945",
+              "points": 200
+            },
+            {
+              "text": "The Magna Carta was signed in this year.",
+              "answer": "1215",
+              "points": 300
+            },
+            {
+              "text": "This ancient wonder stood at the entrance to the harbor of Rhodes.",
+              "answer": "The Colossus of Rhodes",
+              "points": 400
+            },
+            {
+              "text": "This scientist was the first woman to win a Nobel Prize.",
+              "answer": "Marie Curie",
+              "points": 500
+            }
+          ]
+        },
+        {
+          "name": "Math",
+          "questions": [
+            {
+              "text": "15 × 12 = ?",
+              "answer": "180",
+              "points": 100
+            },
+            {
+              "text": "The value of π (pi) to two decimal places.",
+              "answer": "3.14",
+              "points": 200
+            },
+            {
+              "text": "The square root of 144.",
+              "answer": "12",
+              "points": 300
+            },
+            {
+              "text": "A triangle has two angles measuring 45° and 60°. What is the third angle?",
+              "answer": "75°",
+              "points": 400
+            },
+            {
+              "text": "2 to the power of 10.",
+              "answer": "1,024",
+              "points": 500
+            }
+          ]
+        },
+        {
+          "name": "Language",
+          "questions": [
+            {
+              "text": "The most spoken language in the world by total number of speakers.",
+              "answer": "English",
+              "points": 100
+            },
+            {
+              "text": "In English grammar, this part of speech modifies a verb, adjective, or other adverb.",
+              "answer": "Adverb",
+              "points": 200
+            },
+            {
+              "text": "This term describes a word that means the opposite of another word.",
+              "answer": "Antonym",
+              "points": 300
+            },
+            {
+              "text": "The Greek alphabet contains this many letters.",
+              "answer": "24",
+              "points": 400
+            },
+            {
+              "text": "The official language of Brazil.",
+              "answer": "Portuguese",
+              "points": 500
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Round 2",
+      "categories": [
+        {
+          "name": "Geography",
+          "questions": [
+            {
+              "text": "The capital city of Canada.",
+              "answer": "Ottawa",
+              "points": 200
+            },
+            {
+              "text": "This country contains more natural lakes than every other country in the world combined.",
+              "answer": "Canada",
+              "points": 400
+            },
+            {
+              "text": "The longest mountain range in the world.",
+              "answer": "The Andes",
+              "points": 600
+            },
+            {
+              "text": "The Strait of Gibraltar separates these two continents.",
+              "answer": "Europe and Africa",
+              "points": 800
+            },
+            {
+              "text": "This African country is the most populous on the continent.",
+              "answer": "Nigeria",
+              "points": 1000
+            }
+          ]
+        },
+        {
+          "name": "Science",
+          "questions": [
+            {
+              "text": "The atomic number of carbon.",
+              "answer": "6",
+              "points": 200
+            },
+            {
+              "text": "The hardest natural substance on Earth.",
+              "answer": "Diamond",
+              "points": 400
+            },
+            {
+              "text": "The name for the outermost layer of the Earth.",
+              "answer": "The crust",
+              "points": 600
+            },
+            {
+              "text": "This subatomic particle has a negative electric charge and orbits the nucleus.",
+              "answer": "Electron",
+              "points": 800,
+              "is_double": true,
+              "double_type": "wagerable"
+            },
+            {
+              "text": "The approximate temperature of the surface of the Sun in degrees Celsius.",
+              "answer": "5,500°C (accept 5,000–6,000°C)",
+              "points": 1000
+            }
+          ]
+        },
+        {
+          "name": "History",
+          "questions": [
+            {
+              "text": "The French Revolution began in this year.",
+              "answer": "1789",
+              "points": 200
+            },
+            {
+              "text": "The first emperor of the Roman Empire.",
+              "answer": "Augustus (Caesar Augustus)",
+              "points": 400
+            },
+            {
+              "text": "The Berlin Wall fell in this year.",
+              "answer": "1989",
+              "points": 600
+            },
+            {
+              "text": "Machu Picchu was built by this ancient civilization.",
+              "answer": "The Inca (Incan Empire)",
+              "points": 800
+            },
+            {
+              "text": "The Titanic sank in this year.",
+              "answer": "1912",
+              "points": 1000
+            }
+          ]
+        },
+        {
+          "name": "Math",
+          "questions": [
+            {
+              "text": "20% of 250.",
+              "answer": "50",
+              "points": 200
+            },
+            {
+              "text": "The formula for the area of a circle.",
+              "answer": "πr²",
+              "points": 400
+            },
+            {
+              "text": "The next prime number after 89.",
+              "answer": "97",
+              "points": 600,
+              "is_double": true,
+              "double_type": "wagerable"
+            },
+            {
+              "text": "If f(x) = 3x² + 2x − 1, what is f(2)?",
+              "answer": "15",
+              "points": 800
+            },
+            {
+              "text": "The sum of interior angles in a hexagon.",
+              "answer": "720°",
+              "points": 1000
+            }
+          ]
+        },
+        {
+          "name": "Language",
+          "questions": [
+            {
+              "text": "This term describes words that phonetically imitate the sound they describe, such as 'buzz' or 'sizzle'.",
+              "answer": "Onomatopoeia",
+              "points": 200
+            },
+            {
+              "text": "Julius Caesar's famous Latin phrase meaning 'I came, I saw, I conquered'.",
+              "answer": "Veni, Vidi, Vici",
+              "points": 400
+            },
+            {
+              "text": "The United Nations has this many official languages.",
+              "answer": "6 (Arabic, Chinese, English, French, Russian, Spanish)",
+              "points": 600
+            },
+            {
+              "text": "A word or phrase that reads the same forwards and backwards is called this.",
+              "answer": "Palindrome",
+              "points": 800
+            },
+            {
+              "text": "The world's oldest known written language, originating in ancient Mesopotamia.",
+              "answer": "Sumerian",
+              "points": 1000
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "final_jeopardy": {
+    "category": "World History",
+    "text": "This 1815 battle near Brussels marked Napoleon Bonaparte's final defeat and ended his rule as Emperor of France.",
+    "answer": "The Battle of Waterloo"
+  }
+}
