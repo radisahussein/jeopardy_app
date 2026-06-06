@@ -100,6 +100,7 @@ export type Database = {
           double_type: "wagerable" | "static_max" | null;
           double_max_wager: number | null;
           is_final_jeopardy: boolean;
+          image_url: string | null;
           created_at: string;
         };
         Insert: {
@@ -113,6 +114,7 @@ export type Database = {
           double_type?: "wagerable" | "static_max" | null;
           double_max_wager?: number | null;
           is_final_jeopardy?: boolean;
+          image_url?: string | null;
         };
         Update: {
           id?: string;
@@ -125,6 +127,7 @@ export type Database = {
           double_type?: "wagerable" | "static_max" | null;
           double_max_wager?: number | null;
           is_final_jeopardy?: boolean;
+          image_url?: string | null;
         };
         Relationships: [];
       };

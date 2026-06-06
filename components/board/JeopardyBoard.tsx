@@ -400,6 +400,22 @@ export default function JeopardyBoard({ session: initialSession, game, initialSe
                   ${activeQuestion.points}
                 </div>
 
+                {activeQuestion.image_url && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.1 }}
+                    className="mb-6 flex justify-center"
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={activeQuestion.image_url}
+                      alt="Question image"
+                      className="max-h-64 sm:max-h-80 max-w-full rounded-xl object-contain shadow-2xl"
+                    />
+                  </motion.div>
+                )}
+
                 <motion.h2
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}

@@ -54,7 +54,8 @@ export default function RunPanel({ session: initialSession, game, initialSession
     ? findQuestion(game, boardState.active_question.question_id)
     : null;
 
-  const boardUrl = `${typeof window !== "undefined" ? window.location.origin : ""}/play/${session.id}`;
+  const [boardUrl, setBoardUrl] = useState(`/play/${session.id}`);
+  useEffect(() => { setBoardUrl(`${window.location.origin}/play/${session.id}`); }, [session.id]);
 
   async function updateBoardState(newState: Partial<BoardState>) {
     const merged = { ...boardState, ...newState } as BoardState;
@@ -586,24 +587,32 @@ function ActiveQuestionPanel({
 
   // Question info card (shown always)
   const QuestionCard = () => (
-    <div className={`rounded-xl p-5 border ${
+    <div className={`rounded-xl border overflow-hidden ${
       isDouble
         ? "bg-[#FFDB58]/8 border-[#FFDB58]/30 shadow-[0_0_20px_rgba(255,219,88,0.1)]"
         : "bg-[#0F1050] border-[#0A0A3E]"
     }`}>
-      {isDouble && (
-        <div className="flex items-center gap-1.5 mb-3">
-          <Star className="w-4 h-4 text-[#FFDB58] fill-[#FFDB58]" />
-          <span className="text-sm font-russo text-[#FFDB58] uppercase tracking-widest">Double Points!</span>
+      {question.image_url && (
+        <div className="bg-black/40 flex items-center justify-center max-h-56 overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={question.image_url} alt="Question image" className="w-full max-h-56 object-contain" />
         </div>
       )}
-      <div className="font-russo text-2xl text-[#FFDB58] mb-2">${question.points}</div>
-      <div className="text-sm font-chakra text-white/80 leading-relaxed">
-        {question.text || "(No question text)"}
-      </div>
-      <div className="mt-3 pt-3 border-t border-white/10 text-xs font-chakra text-white/40">
-        <span className="text-[#FFDB58]/60 font-russo uppercase tracking-wider text-[10px]">Answer: </span>
-        {question.answer || "(No answer)"}
+      <div className="p-5">
+        {isDouble && (
+          <div className="flex items-center gap-1.5 mb-3">
+            <Star className="w-4 h-4 text-[#FFDB58] fill-[#FFDB58]" />
+            <span className="text-sm font-russo text-[#FFDB58] uppercase tracking-widest">Double Points!</span>
+          </div>
+        )}
+        <div className="font-russo text-2xl text-[#FFDB58] mb-2">${question.points}</div>
+        <div className="text-sm font-chakra text-white/80 leading-relaxed">
+          {question.text || "(No question text)"}
+        </div>
+        <div className="mt-3 pt-3 border-t border-white/10 text-xs font-chakra text-white/40">
+          <span className="text-[#FFDB58]/60 font-russo uppercase tracking-wider text-[10px]">Answer: </span>
+          {question.answer || "(No answer)"}
+        </div>
       </div>
     </div>
   );

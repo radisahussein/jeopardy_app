@@ -12,7 +12,7 @@ import { toast } from "sonner";
 import {
   Plus, Trash2, Pencil, Play, ArrowLeft, Star, ChevronRight,
   Copy, ExternalLink, Users, Upload, FileJson, Check, AlertTriangle,
-  Settings2,
+  Settings2, ImageIcon, X,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -234,6 +234,7 @@ export default function GameEditor({ game: initialGame }: Props) {
         double_type: q.is_double ? q.double_type : null,
         double_max_wager: q.is_double && q.double_type === "static_max" ? q.double_max_wager : null,
         is_final_jeopardy: q.is_final_jeopardy,
+        image_url: q.image_url ?? null,
       })
       .eq("id", q.id);
 
@@ -1001,7 +1002,40 @@ function QuestionTileAdmin({ question, onEdit, onDelete }: { question: Question;
 
 function QuestionEditor({ question: initialQ, onSave, onClose }: { question: Question; onSave: (q: Question) => void; onClose: () => void }) {
   const [q, setQ] = useState(initialQ);
+  const [uploading, setUploading] = useState(false);
+  const imageInputRef = useRef<HTMLInputElement>(null);
+  const supabase = createClient();
+
   function update(fields: Partial<Question>) { setQ((prev) => ({ ...prev, ...fields })); }
+
+  async function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (file.size > 10 * 1024 * 1024) {
+      toast.error("Image must be under 10 MB");
+      return;
+    }
+    setUploading(true);
+    const ext = file.name.split(".").pop();
+    const path = `${q.id}-${Date.now()}.${ext}`;
+    const { error } = await supabase.storage.from("question-images").upload(path, file, { upsert: true });
+    if (error) {
+      toast.error("Image upload failed");
+      setUploading(false);
+      return;
+    }
+    const { data } = supabase.storage.from("question-images").getPublicUrl(path);
+    update({ image_url: data.publicUrl });
+    setUploading(false);
+    e.target.value = "";
+  }
+
+  async function removeImage() {
+    if (!q.image_url) return;
+    const path = q.image_url.split("/question-images/")[1];
+    if (path) await supabase.storage.from("question-images").remove([path]);
+    update({ image_url: null });
+  }
 
   return (
     <Dialog open onOpenChange={(open) => { if (!open) onClose(); }}>
@@ -1036,6 +1070,31 @@ function QuestionEditor({ question: initialQ, onSave, onClose }: { question: Que
             <Input value={q.answer} onChange={(e) => update({ answer: e.target.value })}
               placeholder="The correct answer..."
               className="j-input h-9 font-chakra" />
+          </div>
+          <div className="space-y-1.5">
+            <Label className="text-xs font-russo text-white/50 uppercase tracking-wider">Image (optional)</Label>
+            <input ref={imageInputRef} type="file" accept="image/*" className="hidden" onChange={handleImageUpload} />
+            {q.image_url ? (
+              <div className="relative rounded-lg overflow-hidden border border-white/10 bg-black/20">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={q.image_url} alt="Question image" className="w-full max-h-40 object-contain" />
+                <button
+                  onClick={removeImage}
+                  className="absolute top-2 right-2 bg-black/60 hover:bg-black/80 text-white rounded-full p-1 transition-colors"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={() => imageInputRef.current?.click()}
+                disabled={uploading}
+                className="w-full flex items-center justify-center gap-2 h-20 rounded-lg border border-dashed border-white/15 text-white/30 hover:border-white/30 hover:text-white/50 transition-colors disabled:opacity-50"
+              >
+                <ImageIcon className="w-4 h-4" />
+                <span className="text-xs font-chakra">{uploading ? "Uploading…" : "Click to upload image"}</span>
+              </button>
+            )}
           </div>
           <div className="space-y-3 pt-1">
             <div
